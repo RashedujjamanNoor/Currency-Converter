@@ -1,4 +1,4 @@
-const baseUrl = "https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies";
+const baseUrl = "https://2024-03-06.currency-api.pages.dev/v1/currencies/eur.json";
 
 const selector = document.querySelectorAll(".selector");
 const btn = document.querySelector(".btn");
@@ -44,7 +44,11 @@ btn.addEventListener("click" , async (evt) =>{
 
     const URL = `${baseUrl}/${fromCurr.value.toLowerCase()}/${toCurr.value.toLowerCase()}.json`;
     let response = await fetch(URL);
-    console.log(response);
+    let data = await response.json();
+    let rate = data [toCurr.value.toLowerCase()];
+
+    let finalAmount = amountVal * rate;
+    Msg.innerText = `${amountVal} ${fromCurr.value} = ${finalAmount} ${toCurr.value} `
 
 
 })
